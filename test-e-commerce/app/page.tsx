@@ -10,7 +10,6 @@ const PRODUCTS = [
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200 h-[70px] px-6 md:px-10 flex items-center justify-between">
     
-    {/* ฝั่งซ้าย: เมนู และ ค้นหา */}
     <div className="flex items-center gap-5 md:gap-8 z-10">
       <button aria-label="Menu" className="hover:opacity-50 transition-opacity">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M3 12h18M3 6h18M3 18h18" strokeLinecap="square"/></svg>
@@ -21,14 +20,12 @@ const Navbar = () => (
       </button>
     </div>
     
-    {/* ตรงกลาง: โลโก้ (ใช้ Absolute เพื่อให้อยู่กึ่งกลางหน้าจอเสมอ 100%) */}
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <h1 className="text-xl md:text-2xl font-bold tracking-[0.25em] uppercase text-black m-0">
         CODELAB
       </h1>
     </div>
 
-    {/* ฝั่งขวา: บัญชีผู้ใช้ และ ตะกร้า */}
     <div className="flex items-center gap-5 md:gap-8 z-10 text-[11px] tracking-widest font-bold">
       <button className="hidden md:block hover:opacity-50 transition-opacity">ACCOUNT</button>
       <button className="hover:opacity-50 transition-opacity">CART (0)</button>
@@ -38,7 +35,6 @@ const Navbar = () => (
 
 const HeroBanner = () => (
   <section className="mt-[70px] w-full h-[85vh] relative bg-neutral-100 flex flex-col md:flex-row">
-    {/* ฝั่งซ้าย (Campaign Left) - รูปนายแบบเท่ๆ สไตล์แฟชั่นมินิมอล */}
     <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
       <img 
         src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=1200&q=80" 
@@ -47,7 +43,6 @@ const HeroBanner = () => (
       />
     </div>
     
-    {/* ฝั่งขวา (Campaign Right) - รูปแฟชั่นผู้หญิงที่เข้าคู่กัน */}
     <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
       <img 
         src="https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?auto=format&fit=crop&w=1200&q=80" 
@@ -56,7 +51,6 @@ const HeroBanner = () => (
       />
     </div>
     
-    {/* กล่องข้อความตรงกลาง */}
     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
       <div className="bg-white/95 px-10 py-8 text-center pointer-events-auto border border-neutral-200">
         <h2 className="text-xl md:text-2xl font-bold tracking-widest uppercase mb-6">Spring / Summer</h2>
@@ -72,8 +66,6 @@ const HeroBanner = () => (
 
 const ProductGrid = () => (
   <section className="w-full py-24 px-6 md:px-10 max-w-[1600px] mx-auto">
-    
-    {/* หัวข้อ New Arrivals แบบมีเส้นคั่นด้านล่าง */}
     <div className="flex justify-between items-end mb-12 border-b border-neutral-200 pb-4">
       <h3 className="text-base md:text-lg font-bold uppercase tracking-widest">New Arrivals</h3>
       <button className="text-[11px] font-bold tracking-widest uppercase hover:opacity-50 transition-opacity">
@@ -89,7 +81,6 @@ const ProductGrid = () => (
             <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           
-          {/* จัดข้อความให้อยู่กึ่งกลางแบบแบรนด์ Hi-end */}
           <div className="flex flex-col items-center text-center px-2">
             <h4 className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 mb-2 leading-relaxed">
               {product.name}
