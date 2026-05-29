@@ -1,208 +1,176 @@
 import React from 'react';
 
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  imageUrl: string;
-}
-
-const FEATURED_PRODUCTS: Product[] = [
-  {
-    id: '1',
-    name: 'Minimalist Overcoat',
-    price: '$299',
-    imageUrl: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: '2',
-    name: 'Silk Evening Dress',
-    price: '$189',
-    imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: '3',
-    name: 'Essential Cotton Shirt',
-    price: '$89',
-    imageUrl: 'https://images.unsplash.com/photo-1434389670869-bac08581138c?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: '4',
-    name: 'Structured Blazer',
-    price: '$245',
-    imageUrl: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
-  },
+const PRODUCTS = [
+  { id: '1', name: 'Oversized Wool Sweater', price: '฿ 14,500', imageUrl: 'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?auto=format&fit=crop&w=800&q=80' },
+  { id: '2', name: 'Straight-Fit Denim', price: '฿ 9,200', imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80' },
+  { id: '3', name: 'Classic Cotton T-Shirt', price: '฿ 4,800', imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80' },
+  { id: '4', name: 'Tailored Single-Breasted Jacket', price: '฿ 28,000', imageUrl: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80' },
 ];
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/80 backdrop-blur-md border-b border-neutral-100">
-    <div className="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-neutral-600">
-      <a href="#" className="hover:text-black transition-colors">Shop</a>
-      <a href="#" className="hover:text-black transition-colors">Collections</a>
-      <a href="#" className="hover:text-black transition-colors">Editorial</a>
+  <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200 h-[70px] px-6 md:px-10 flex items-center justify-between">
+    
+    {/* ฝั่งซ้าย: เมนู และ ค้นหา */}
+    <div className="flex items-center gap-5 md:gap-8 z-10">
+      <button aria-label="Menu" className="hover:opacity-50 transition-opacity">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M3 12h18M3 6h18M3 18h18" strokeLinecap="square"/></svg>
+      </button>
+      <button className="hidden md:flex items-center text-[11px] tracking-widest font-bold text-neutral-900 hover:opacity-50 transition-opacity">
+        <svg width="16" height="16" className="mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 21l-4.35-4.35M19 10.5a8.5 8.5 0 11-17 0 8.5 8.5 0 0117 0z" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        SEARCH
+      </button>
     </div>
     
-    <div className="text-2xl font-serif font-bold tracking-widest uppercase">
-      CODELAB
+    {/* ตรงกลาง: โลโก้ (ใช้ Absolute เพื่อให้อยู่กึ่งกลางหน้าจอเสมอ 100%) */}
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <h1 className="text-xl md:text-2xl font-bold tracking-[0.25em] uppercase text-black m-0">
+        CODELAB
+      </h1>
     </div>
 
-    <div className="flex items-center space-x-6">
-      <button aria-label="Search" className="hover:opacity-70 transition-opacity">
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-4.35-4.35M19 10.5a8.5 8.5 0 11-17 0 8.5 8.5 0 0117 0z"></path></svg>
-      </button>
-      <button aria-label="Cart" className="hover:opacity-70 transition-opacity">
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-      </button>
+    {/* ฝั่งขวา: บัญชีผู้ใช้ และ ตะกร้า */}
+    <div className="flex items-center gap-5 md:gap-8 z-10 text-[11px] tracking-widest font-bold">
+      <button className="hidden md:block hover:opacity-50 transition-opacity">ACCOUNT</button>
+      <button className="hover:opacity-50 transition-opacity">CART (0)</button>
     </div>
   </nav>
 );
 
-const HeroSection = () => (
-  <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-    {/* Background Image */}
-    <div className="absolute inset-0">
+const HeroBanner = () => (
+  <section className="mt-[70px] w-full h-[85vh] relative bg-neutral-100 flex flex-col md:flex-row">
+    {/* ฝั่งซ้าย (Campaign Left) - รูปนายแบบเท่ๆ สไตล์แฟชั่นมินิมอล */}
+    <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
       <img 
-        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=2000&q=80" 
-        alt="Fashion Model" 
-        className="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]"
+        src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=1200&q=80" 
+        alt="Campaign Left - Men" 
+        className="w-full h-full object-cover object-center" 
       />
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
     </div>
-
-    {/* Content */}
-    <div className="relative z-10 text-center text-white px-4 flex flex-col items-center mt-16">
-      <h2 className="text-sm md:text-base uppercase tracking-[0.3em] mb-4 text-white/90">
-        Fall / Winter 2026
-      </h2>
-      <h1 className="text-5xl md:text-7xl font-serif font-medium mb-8 leading-tight">
-        The Art of <br /> Elegance
-      </h1>
-      <button className="bg-white text-black px-8 py-4 uppercase tracking-widest text-sm font-medium hover:bg-neutral-200 transition-colors duration-300">
-        Explore Collection
-      </button>
+    
+    {/* ฝั่งขวา (Campaign Right) - รูปแฟชั่นผู้หญิงที่เข้าคู่กัน */}
+    <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
+      <img 
+        src="https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?auto=format&fit=crop&w=1200&q=80" 
+        alt="Campaign Right - Women" 
+        className="w-full h-full object-cover object-center" 
+      />
+    </div>
+    
+    {/* กล่องข้อความตรงกลาง */}
+    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+      <div className="bg-white/95 px-10 py-8 text-center pointer-events-auto border border-neutral-200">
+        <h2 className="text-xl md:text-2xl font-bold tracking-widest uppercase mb-6">Spring / Summer</h2>
+        <div className="flex space-x-4 justify-center text-sm font-medium">
+          <button className="border-b border-black pb-1 hover:text-neutral-500 hover:border-neutral-500 transition-all">SHOP MEN</button>
+          <span className="text-neutral-300">|</span>
+          <button className="border-b border-black pb-1 hover:text-neutral-500 hover:border-neutral-500 transition-all">SHOP WOMEN</button>
+        </div>
+      </div>
     </div>
   </section>
 );
 
-const ProductCard = ({ product }: { product: Product }) => (
-  <div className="group cursor-pointer">
-    <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100 mb-4">
-      <img 
-        src={product.imageUrl} 
-        alt={product.name} 
-        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-      />
-      {/* Quick Add Button overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-        <button className="w-full bg-black text-white py-3 text-sm uppercase tracking-wider">
-          Quick View
-        </button>
-      </div>
-    </div>
-    <div className="flex flex-col items-center text-center">
-      <h3 className="text-sm font-medium text-neutral-900 mb-1">{product.name}</h3>
-      <p className="text-sm text-neutral-500">{product.price}</p>
-    </div>
-  </div>
-);
-
-const FeaturedSection = () => (
-  <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-3xl font-serif mb-4">New Arrivals</h2>
-      <a href="#" className="text-sm uppercase tracking-widest text-neutral-500 border-b border-neutral-300 pb-1 hover:text-black hover:border-black transition-colors">
-        View All
-      </a>
+const ProductGrid = () => (
+  <section className="w-full py-24 px-6 md:px-10 max-w-[1600px] mx-auto">
+    
+    {/* หัวข้อ New Arrivals แบบมีเส้นคั่นด้านล่าง */}
+    <div className="flex justify-between items-end mb-12 border-b border-neutral-200 pb-4">
+      <h3 className="text-base md:text-lg font-bold uppercase tracking-widest">New Arrivals</h3>
+      <button className="text-[11px] font-bold tracking-widest uppercase hover:opacity-50 transition-opacity">
+        VIEW ALL &rarr;
+      </button>
     </div>
     
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {FEATURED_PRODUCTS.map(product => (
-        <ProductCard key={product.id} product={product} />
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-16">
+      {PRODUCTS.map(product => (
+        <div key={product.id} className="group cursor-pointer flex flex-col">
+          <div className="w-full aspect-[3/4] bg-neutral-100 overflow-hidden mb-5 relative">
+            <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          
+          {/* จัดข้อความให้อยู่กึ่งกลางแบบแบรนด์ Hi-end */}
+          <div className="flex flex-col items-center text-center px-2">
+            <h4 className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 mb-2 leading-relaxed">
+              {product.name}
+            </h4>
+            <p className="text-[11px] md:text-xs text-neutral-500">{product.price}</p>
+          </div>
+        </div>
       ))}
     </div>
   </section>
 );
 
-const EditorialSection = () => (
-  <section className="bg-neutral-50 py-24">
-    <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-16">
-      <div className="w-full md:w-1/2">
-        <img 
-          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80" 
-          alt="Editorial Lookbook" 
-          className="w-full aspect-[4/5] object-cover"
-        />
-      </div>
-      <div className="w-full md:w-1/2 flex flex-col items-start">
-        <span className="uppercase tracking-widest text-xs text-neutral-500 mb-4">The Campaign</span>
-        <h2 className="text-4xl font-serif mb-6 leading-snug">Redefining Modern <br/> Sophistication</h2>
-        <p className="text-neutral-600 mb-8 leading-relaxed">
-          Our latest collection emphasizes structural purity and uncompromising quality. 
-          Every piece is thoughtfully designed to transcend seasons, offering a timeless aesthetic for the modern wardrobe.
+const Footer = () => (
+  <footer className="w-full bg-[#F5F5F4] text-[#1A1A1A] text-[11px] md:text-xs font-sans tracking-wide">
+    <div className="grid grid-cols-1 md:grid-cols-3 border-b border-[#E5E5E5]">
+      <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E5E5E5] flex flex-col items-start">
+        <h4 className="font-bold uppercase mb-4 tracking-widest">Subscribe to the newsletter</h4>
+        <p className="mb-6 leading-relaxed text-[#4A4A4A] max-w-sm">
+          Sign up for our newsletter to receive previews of our latest news and exclusive offers.
         </p>
-        <button className="border border-black px-8 py-3 uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors duration-300">
-          Read The Story
+        <button className="underline underline-offset-4 hover:text-gray-500 transition-colors">
+          Subscribe to our newsletter
+        </button>
+      </div>
+
+      <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E5E5E5] flex flex-col items-start">
+        <h4 className="font-bold uppercase mb-4 tracking-widest">Need personalized advice?</h4>
+        <p className="mb-6 leading-relaxed text-[#4A4A4A] max-w-sm">
+          Our Codelab Client Care Team will be delighted to assist you Monday to Friday, from 10am to 6pm.
+        </p>
+        <button className="underline underline-offset-4 hover:text-gray-500 transition-colors">
+          Contact us
+        </button>
+      </div>
+
+      <div className="p-8 md:p-10 flex flex-col items-start">
+        <h4 className="font-bold uppercase mb-4 tracking-widest">Delivery & Returns</h4>
+        <p className="mb-6 leading-relaxed text-[#4A4A4A] max-w-sm">
+          Orders placed on our website are delivered worldwide. You have 14 days after receipt to return your items.
+        </p>
+        <button className="underline underline-offset-4 hover:text-gray-500 transition-colors">
+          Discover our Delivery and Returns policy
         </button>
       </div>
     </div>
-  </section>
-);
 
-const Footer = () => (
-  <footer className="bg-black text-white pt-20 pb-10 px-6 md:px-12">
-    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-      <div className="col-span-1 md:col-span-2">
-        <h3 className="text-2xl font-serif mb-6">Codelab</h3>
-        <p className="text-neutral-400 text-sm max-w-sm mb-6 leading-relaxed">
-          Join our newsletter to receive updates on new arrivals, special offers, and our editorial features.
-        </p>
-        <div className="flex border-b border-neutral-700 pb-2 max-w-sm">
-          <input 
-            type="email" 
-            placeholder="Email Address" 
-            className="bg-transparent w-full focus:outline-none text-sm"
-          />
-          <button className="uppercase tracking-widest text-xs ml-4 hover:text-neutral-300">Subscribe</button>
+    <div className="grid grid-cols-1 md:grid-cols-4 border-b border-[#E5E5E5]">
+      {['Help', 'About Us', 'Social Media', 'Legal'].map((item) => (
+        <div key={item} className="p-6 border-b md:border-b-0 md:border-r border-[#E5E5E5] flex justify-between items-center cursor-pointer hover:bg-[#EAEAEA] transition-colors last:border-r-0">
+          <span className="font-bold uppercase tracking-widest">{item}</span>
+          <span className="text-lg font-light">+</span>
         </div>
-      </div>
-      
-      <div>
-        <h4 className="uppercase tracking-widest text-xs mb-6 text-neutral-500">Shop</h4>
-        <ul className="space-y-4 text-sm text-neutral-400">
-          <li><a href="#" className="hover:text-white transition-colors">All Products</a></li>
-          <li><a href="#" className="hover:text-white transition-colors">Lookbook</a></li>
-          <li><a href="#" className="hover:text-white transition-colors">Collections</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 className="uppercase tracking-widest text-xs mb-6 text-neutral-500">Support</h4>
-        <ul className="space-y-4 text-sm text-neutral-400">
-          <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="#" className="hover:text-white transition-colors">Shipping & Returns</a></li>
-          <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-        </ul>
-      </div>
+      ))}
     </div>
-    
-    <div className="max-w-7xl mx-auto border-t border-neutral-800 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-500">
-      <p>&copy; 2026 Codelab. All rights reserved.</p>
-      <div className="flex space-x-6 mt-4 md:mt-0">
-        <a href="#" className="hover:text-white">Instagram</a>
-        <a href="#" className="hover:text-white">Pinterest</a>
+
+    <div className="p-6 flex flex-col md:flex-row justify-between items-center text-[#737373] text-[10px] md:text-[11px]">
+      <div className="mb-6 md:mb-0">
+        <span>Country/region : </span>
+        <button className="font-bold text-[#1A1A1A] hover:opacity-70 transition-opacity">
+          THAILAND - ENGLISH (฿) &rarr;
+        </button>
+      </div>
+      <div className="flex flex-col items-end space-y-2">
+        <div className="flex items-center space-x-3">
+          <span className="font-bold text-[#1A1A1A]">Accessibility: improved contrast</span>
+          <div className="w-10 h-5 bg-gray-400 rounded-full relative cursor-pointer flex items-center px-0.5">
+            <div className="w-4 h-4 bg-white rounded-full shadow-sm"></div>
+          </div>
+        </div>
+        <p className="tracking-widest">&copy;CODELAB 2026</p>
       </div>
     </div>
   </footer>
 );
 
-export default function LandingPage() {
+export default function CodelabLandingPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="bg-white">
       <Navbar />
-      <HeroSection />
-      <FeaturedSection />
-      <EditorialSection />
+      <HeroBanner />
+      <ProductGrid />
       <Footer />
     </main>
   );
