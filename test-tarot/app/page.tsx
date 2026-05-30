@@ -49,7 +49,6 @@ const Particles = () => {
 
 const Candle = ({ className }: { className?: string }) => (
   <div className={cn("relative flex flex-col items-center", className)}>
-    {/* Flame */}
     <motion.div
       className="w-3 h-8 bg-gradient-to-t from-orange-400 via-yellow-200 to-transparent rounded-full origin-bottom"
       animate={{
@@ -68,9 +67,7 @@ const Candle = ({ className }: { className?: string }) => (
         filter: "blur(1px)",
       }}
     />
-    {/* Candle Stick */}
     <div className="w-4 h-24 bg-gradient-to-b from-yellow-100 to-yellow-600 rounded-sm mt-1 shadow-inner" />
-    {/* Stand base placeholder */}
     <div className="w-12 h-2 bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-700 rounded-full mt-1" />
   </div>
 );
@@ -86,7 +83,6 @@ const CrystalBall = () => (
       ease: "easeInOut",
     }}
   >
-    {/* Inner glowing orb */}
     <motion.div
       className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-300 via-purple-700 to-indigo-900 overflow-hidden mix-blend-screen"
       animate={{
@@ -102,7 +98,6 @@ const CrystalBall = () => (
         ease: "easeInOut",
       }}
     >
-      {/* Magic symbols / patterns inside */}
       <motion.div
         className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"
         animate={{ rotate: 360 }}
@@ -118,7 +113,6 @@ const CrystalBall = () => (
       </div>
     </motion.div>
 
-    {/* Glass reflection */}
     <div className="absolute inset-0 rounded-full border border-white/20 shadow-[inset_0_20px_40px_rgba(255,255,255,0.4)] pointer-events-none" />
     <div className="absolute top-4 left-8 w-16 h-8 bg-white/30 rounded-full rotate-[-45deg] blur-md" />
   </motion.div>
@@ -138,14 +132,13 @@ const TarotCard = ({ rotation, zIndex, offset, onClick, delay = 0 }: { rotation:
     whileHover={{
       y: -30,
       scale: 1.15,
-      zIndex: 100, // Ensure it always pops to the very front when hovered
+      zIndex: 100,
       rotate: 0,
       boxShadow: "0 25px 50px -12px rgba(220, 38, 38, 0.8)",
       transition: { duration: 0.2 },
     }}
     whileTap={{ scale: 0.95 }}
   >
-    {/* Card Back Design */}
     <div className="absolute inset-1 border border-yellow-600/30 rounded-md flex items-center justify-center opacity-50 bg-[url('https://www.transparenttextures.com/patterns/argyle.png')]">
       <div className="w-10 h-10 border border-yellow-500 rounded-full rotate-45" />
     </div>
@@ -169,7 +162,6 @@ export default function FortuneTellerLanding() {
   const handleCardPick = () => {
     setShowCardModal(false);
     setIsTransitioning(true);
-    // Simulate navigation/transition delay
     setTimeout(() => {
       setIsTransitioning(false);
     }, 2500);
@@ -178,7 +170,6 @@ export default function FortuneTellerLanding() {
   return (
     <div className="min-h-screen bg-[#0a0505] text-white overflow-hidden font-sans relative selection:bg-purple-900">
       
-      {/* Loading Overlay (When picking a card) */}
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
@@ -199,7 +190,6 @@ export default function FortuneTellerLanding() {
         )}
       </AnimatePresence>
 
-      {/* Card Selection Modal (Popup) */}
       <AnimatePresence>
         {showCardModal && (
           <motion.div
@@ -221,7 +211,6 @@ export default function FortuneTellerLanding() {
             </motion.div>
 
             <div className="relative w-full max-w-4xl h-64 flex justify-center items-center pointer-events-auto">
-              {/* เปลี่ยน zIndex ให้ไล่จากน้อยไปมาก (ซ้ายไปขวา) เพื่อให้ขวาสุดทับใบซ้ายทั้งหมด */}
               <TarotCard rotation={-30} offset={-160} zIndex={10} delay={0.1} onClick={handleCardPick} />
               <TarotCard rotation={-18} offset={-100} zIndex={20} delay={0.2} onClick={handleCardPick} />
               <TarotCard rotation={-6} offset={-35} zIndex={30} delay={0.3} onClick={handleCardPick} />
@@ -243,10 +232,8 @@ export default function FortuneTellerLanding() {
         )}
       </AnimatePresence>
 
-      {/* Dark vignette overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#050000]/80 to-[#000000] z-0 pointer-events-none" />
       
-      {/* Red Velvet Table (Bottom curve) */}
       <div className="absolute bottom-[-20%] left-[-10%] right-[-10%] h-[60%] bg-gradient-to-t from-red-950 via-red-900/50 to-transparent rounded-[100%] blur-[20px] pointer-events-none" />
       
       <Particles />
@@ -260,7 +247,6 @@ export default function FortuneTellerLanding() {
             exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            {/* Header Section */}
             <motion.div 
               className="text-center mb-8"
               initial={{ y: -30, opacity: 0 }}
@@ -282,9 +268,7 @@ export default function FortuneTellerLanding() {
               </p>
             </motion.div>
 
-            {/* Crystal Ball & Candles Section */}
             <div className="relative w-full max-w-2xl h-80 flex items-center justify-center mb-8">
-              {/* Left Candle */}
               <motion.div 
                 className="absolute left-[15%] md:left-[25%] bottom-10"
                 initial={{ opacity: 0, x: -20 }}
@@ -294,10 +278,8 @@ export default function FortuneTellerLanding() {
                 <Candle />
               </motion.div>
 
-              {/* Center Ball */}
               <CrystalBall />
 
-              {/* Right Candle */}
               <motion.div 
                 className="absolute right-[15%] md:right-[25%] bottom-10"
                 initial={{ opacity: 0, x: 20 }}
@@ -308,7 +290,6 @@ export default function FortuneTellerLanding() {
               </motion.div>
             </div>
 
-            {/* Input Box (Glassmorphism & Glow) */}
             <motion.div
               className="w-full max-w-3xl relative z-20 mb-6"
               initial={{ y: 30, opacity: 0 }}
@@ -317,7 +298,6 @@ export default function FortuneTellerLanding() {
               whileHover={{ y: -2 }}
             >
               <div className="relative rounded-2xl bg-[#3a0b0b]/40 backdrop-blur-xl border border-red-900/50 shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden">
-                {/* Decorative corners */}
                 <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-yellow-600/50" />
                 <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-yellow-600/50" />
                 <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-yellow-600/50" />
@@ -328,7 +308,6 @@ export default function FortuneTellerLanding() {
                   placeholder="พิมพ์คำถามของคุณ...(ไม่บังคับ)"
                 />
 
-                {/* Categories Row inside the glass panel */}
                 <div className="px-4 pb-4 flex flex-wrap justify-center gap-2">
                   {categories.map((cat) => (
                     <motion.button
@@ -350,7 +329,6 @@ export default function FortuneTellerLanding() {
               </div>
             </motion.div>
 
-            {/* Action Buttons */}
             <motion.div 
               className="flex items-center gap-4 z-20 mb-16"
               initial={{ y: 20, opacity: 0 }}
